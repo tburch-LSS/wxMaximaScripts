@@ -1,0 +1,167 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: comment start ]
+supposed "pin calculation" (see pin_calc.jpg). it is a nasty integral... of this function:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f_eq : f(x) = (3*x^3-x^2+2*x-4)/sqrt(x^2-3*x+2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g = integrate(f(x),x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+naively...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+g_eq : g(x) = integrate(rhs(f_eq),x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(u>0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(u<1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+h_eq : h(u) = integrate(rhs(f_eq), x,0,u);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><mi>-</mi><mn>2</mn><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+negative;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive
+;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><mi>-</mi><mn>1</mn><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+zero;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>u</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(rhs(f_eq), x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+strange result. imaginary part:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+-0.0625*(135.0*(3.141592653589793*%i)-424.1150082346221*%i);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+about 0... cancels. and the real part:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+-0.0625*(135.0*(-1.76274717403909)+285.6711395993653);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+is this correct? looking at plot:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([rhs(f_eq)], [x,0,1])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+should be about -3. so it seems right.
+
+another approach: factorize numerator...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(3*x^3-x^2+2*x-4);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+and denominator...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(x^2-3*x+2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+after some cancellation (and maintaining the negative for the region of interest):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ff_eq : ff(x) = -(3*x^2+2*x+4)*sqrt((1-x)/(2-x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+integrating this...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+gg_eq : gg(x) = integrate(rhs(ff_eq), x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(rhs(ff_eq), x,0,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+seems about right! hardly useful as a pin though... 2981, perhaps? more likely "darling" and partner don't actually exist and the joker never performed the calc...
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 20.12.1"$

@@ -1,0 +1,169 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: comment start ]
+Some relations and integrals involving the Fermi-Dirac distribution:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("physical_constants")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+propvars(physical_constant);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+get (%%k, description);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+constvalue(%%k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+E_over_kT(E,T) := E / (%%k*T);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+mu_over_kT(mu,T) := mu / (%%k*T);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Thermodynamic potential:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Omega(β,ε,η) := -log(1 + exp(β(η-ε)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+-diff(Omega(β,ε,η),η,1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Fermi-Dirac distribution:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FD(x,y) := 1 / (exp(x-y) + 1);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(FD(x,y), [x,0,5], [y,0,5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([FD(x,10),FD(x/2,5),FD(x/10,1)],[x,0,20])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([FD(x,10),FD(x,5),FD(x,1)],[x,0,20])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FDI(n,x,y) := integrate(t^n/(exp(t-y)+1), t,0,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(x>0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FDI(0,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FDI(1,x,y);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>infiniy</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+FDI(1,y);
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>x</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(FDI(1,x,y), [x,0,5], [y,0,5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FD2I(n,m,x,y) := integrate( integrate(t^n*u^m/(exp(t-u)+1),t,0,x) ,u,0,y );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(y>0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FD2I(0,0,x,y);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FD2I(1,0,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+FD2I(0,1,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Relativistic FD distribution:
+x = p / (m*c) ; eta = mu / (m*c²) ; beta = m*c² / (k*T):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+constvalue(%m_e*%c^2 / %%k);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fRKE(p) := sqrt(1 + (p/(%m_e*%c))^2) - 1;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+RFD(x,eta,beta) := 1 / (exp(beta*(sqrt(1+x^2)-1-eta) + 1));
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 20.12.1"$

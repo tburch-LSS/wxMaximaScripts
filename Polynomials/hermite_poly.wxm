@@ -1,0 +1,115 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: comment start ]
+Hermite polynomials. Recurrence relation (extra sqrt of 2n divided out per term so that normalization is 1): 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[n](x) := sqrt(2/n)*x*H[n-1](x) - sqrt((n-1)/n)*H[n-2](x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[0] : lambda( [x] , 1 ) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[1] : lambda( [x] , sqrt(2)*x ) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+weight function: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+w(x) := exp(-x^2)/sqrt(%pi);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+first few... 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[0](x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[1](x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[2](x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[3](x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+H[5](x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([H[0](x)*sqrt(w(x)),H[1](x)*sqrt(w(x)),H[5](x)*sqrt(w(x))], [x,-5,5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+normalizations: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N[n,m] := integrate(H[n](x)*H[m](x)*w(x), x,-inf,inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+N[0,0]; N[1,1]; N[2,2]; N[3,3]; N[4,4];N[4,5];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+overlap integrals: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+J[a,n,m](y) := integrate(x^a*H[n](x)*H[m](x)*w(x), x,-inf, y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+J[3,0,1](y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([J[3,0,1](y)], [y,-5,5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+K[a,n,m] := integrate(x^a*H[n](x)*H[m](x)*w(x), x,-inf, inf);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+K[3,0,1];
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 20.12.1"$

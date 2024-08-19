@@ -1,0 +1,270 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: comment start ]
+question: is the fraction of natural numbers which are prime known? is it nonzero? (answers: yes. no.) nevertheless, some musings follow:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+primes(2,1010);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Np(n) := length(primes(2,n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Np(10000);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+rather naive estimate (upper bound): 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pfr(n) := Np(n) / n;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pfr(10000);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpfr(n) := float(pfr(n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+fpfr(100);
+fpfr(1000);
+fpfr(10000);
+fpfr(100000);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+sum of prime inverses:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a(n) := lsum(1/p,p,primes(2,n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a(11); float(a(11));
+a(101); float(a(101));
+a(1009); float(a(1009));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+wow! those are some long integers! this sum supposedly diverges, but VERY slowly...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b(n) := lsum(1/p*lsum(1/q,q,primes(p+1,n)),p,primes(2,n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+b(1009);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a(3) - b(3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+c(n) := lsum(1/p*lsum(1/q*lsum(1/r,r,primes(q+1,n)),q,primes(p+1,n)),p,primes(2,n));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+c(1009);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a(5) - b(5) + c(5);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Fraction of natural numbers which cannot possibly be prime due to being factors of this prime (and possibly larger ones, but not smaller ones):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+p : next_prime(10000);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+invplist : 1/primes(2,p)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Np : length(invplist);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+recurrence relation for determining next larger prime's influence on prime-impossibility-fraction 
+(first prime, 2, removes half of natural numbers from possible prime list): 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pif[n] := invplist[n] * (1 - sum(pif[i],i,1,n-1)) $
+pif[1] : [1/2] $
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+test: 3,5,7 should remove a sixth, a fifteenth, and four one-hundred-fifths...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pif[2]; pif[3]; pif[4];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+looking good... some higher values: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pif[10]; float(pif[10]);
+pif[15]; float(pif[15]);
+pif[100]; float(pif[100]);
+pif[150]; float(pif[150]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+after considering n primes' influence, remaining fraction of possible primes:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+PPF(n) := 1 - sum(pif[i],i,1,n);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+and the impossibility fraction: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+PIF(n) := sum(pif[i],i,1,n);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(PIF(10));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/* PPF(Np); float(PPF(Np)); */   /* for O(10^3) primes or greater, this calc takes a LONG time */;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(PPF(10));
+float(PPF(11));
+float(PPF(12));
+float(PPF(110));
+float(PPF(210));
+PPF(310); float(PPF(310));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+xy : log( [
+        [2,float(PPF(2))[1]],
+        [5,float(PPF(5))[1]],
+        [10,float(PPF(10))[1]],
+        [20,float(PPF(20))[1]],
+        [50,float(PPF(50))[1]],
+        [110,float(PPF(110))[1]],
+        [210,float(PPF(210))[1]],
+        [310,float(PPF(310))[1]]
+    ] )  / log(10)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(points(xy))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+comparing with the upper bound from the simpler ratio:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Np(2053);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+float(fpfr(2053));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+one can see that for the same number of primes considered, PPF works much better (it finds a better upper bound with just 12 primes than the naive method with 310 primes), which is no big surprise since it considers the given primes' influence on all natural numbers.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+perhaps it would be useful to look at the rate of possible-prime-fraction's (PPF) descent...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Riemann zeta function on the critical line: 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d([realpart(float(zeta(1/2+x*%i))),imagpart(float(zeta(1/2+x*%i)))], [x,-30,30])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+realpart(float(zeta(1/2+14.1*%i)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d( grid = true, nticks = 1000,
+    parametric(
+    realpart(float(zeta(1/2+t*%i))),
+    imagpart(float(zeta(1/2+t*%i))),
+    t,0,30
+)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 20.12.1"$
