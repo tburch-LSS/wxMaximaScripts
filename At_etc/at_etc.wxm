@@ -1,0 +1,176 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: comment start ]
+Define the @ (or 'down') relation such that addition is distributive: a + (b @ c) = (a+b) @ (a+c)...
+Or: a + down(b,c) = down(a+b,a+c).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+at_eq : At(a,b) = log(exp(a) + exp(b));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(a,b) := radcan( log(exp(a) + exp(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+check:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(a+b,a+c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+yes! This should work with any base for he power / log's:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ radcan( log(10^(a+b) + 10^(a+c)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(0,0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(1,0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(x,0);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(x,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(a,down(b,c));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([down(x,x),down(x,x+3),down(x,2 .x),down(x,2 .x+3),down(x,3 .x),down(x,3 .x+3)], [x, -2, 2])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (down(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+td_eq : Td(a,b) = log( down(exp(a),exp(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down2(a,b) := radcan( log( down(exp(a),exp(b)) ) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down2(down(a,b),down(a,c));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down2(x,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2 .x),down2(x,3 .x)], [x, -2, 2])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (down2(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+str_eq : Str(a,b) = exp(log(a).log(b));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(a,b) := exp(log(a).log(b));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(a,b.c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(a,b) . up(a,c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+which is the same as the former.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+log( up(exp(a),exp(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (up(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (up(x,y), [x, 0.2, 5], [y, 0.2, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (x.y, [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(a,b) := exp( up(log(a),log(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(a,up(b,c));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(2,2);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (up2(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (up2(x,y), [x, 1.5, 5], [y, 1.5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 20.12.1"$
