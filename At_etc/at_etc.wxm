@@ -27,13 +27,19 @@ down(a+b,a+c);
 
 
 /* [wxMaxima: comment start ]
-yes! This should work with any base for he power / log's:
+yes! This should work with any base for the power / log's:
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
  radcan( log(10^(a+b) + 10^(a+c)) );
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+yep!
+some values:
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -56,9 +62,19 @@ down(x,x);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+associative:
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 down(a,down(b,c));
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Let's have a look:
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -69,6 +85,12 @@ wxplot2d ([down(x,x),down(x,x+3),down(x,2 .x),down(x,2 .x+3),down(x,3 .x),down(x
 /* [wxMaxima: input   start ] */
 wxplot3d (down(x,y), [x, -5, 5], [y, -5, 5])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Heading further "down", define "three dots" (therefore), or down2, such that: a @ down2(b,c) = down2(a@b,a@c) ...
+Or:  down(a,down2(b,c)) = down2(down(a,b),down(a,c)) ...
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -86,6 +108,11 @@ down2(down(a,b),down(a,c));
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+yes!
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 down2(x,x);
 /* [wxMaxima: input   end   ] */
@@ -99,6 +126,12 @@ wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2 .x),down2(x,3 .x)], [x, -2, 2])$
 /* [wxMaxima: input   start ] */
 wxplot3d (down2(x,y), [x, -5, 5], [y, -5, 5])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Let's take a look in the "up" direction for an operation which is distrubutive over multiplication. Defining "star" (or "up"):  a * (b . c) = (a * b) . (a * c) ...
+Or:  up(a,b.c) = up(a,b) . up(a,c) ...
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -122,12 +155,24 @@ up(a,b) . up(a,c);
 
 
 /* [wxMaxima: comment start ]
-which is the same as the former.
+which is the same as the former. So, yes!
+Check with "down"-like operation:
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
 log( up(exp(a),exp(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+yes!
+up(a,b) is the same as:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a^log(b); b^log(a);
 /* [wxMaxima: input   end   ] */
 
 
