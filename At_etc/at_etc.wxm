@@ -88,6 +88,21 @@ wxplot3d (down(x,y), [x, -5, 5], [y, -5, 5])$
 
 
 /* [wxMaxima: comment start ]
+Comparing x+y with down(x,y) :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d ((x+y)/down(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d ((x+y)/down(x,y), [x, -0.5, 5], [y, -0.5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
 Heading further "down", define "three dots" (therefore), or down2, such that: a @ down2(b,c) = down2(a@b,a@c) ...
 Or:  down(a,down2(b,c)) = down2(down(a,b),down(a,c)) ...
    [wxMaxima: comment end   ] */
@@ -118,6 +133,11 @@ down2(x,x);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Let's take a look...
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2 .x),down2(x,3 .x)], [x, -2, 2])$
 /* [wxMaxima: input   end   ] */
@@ -125,6 +145,21 @@ wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2 .x),down2(x,3 .x)], [x, -2, 2])$
 
 /* [wxMaxima: input   start ] */
 wxplot3d (down2(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Comparing down(x,y) with down2(x,y) :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (down(x,y)/down2(x,y), [x, -5, 5], [y, -5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (down(x,y)/down2(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -176,9 +211,19 @@ a^log(b); b^log(a);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Let's take a look:
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 wxplot3d (up(x,y), [x, -5, 5], [y, -5, 5])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+The singularity at the origin comes as no surprise. And for finite, real values, x and y should remain > 0.
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -186,9 +231,29 @@ wxplot3d (up(x,y), [x, 0.2, 5], [y, 0.2, 5])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Compare with x.y :
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
-wxplot3d (x.y, [x, -5, 5], [y, -5, 5])$
+wxplot3d (up(x,y)/(x.y), [x, 1, 10], [y, 1, 10])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+And x.y with x+y :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (x.y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Now to be distributive over "up": up2( a , up(b,c) ) = up( up2(a,b) , up2(a,c) ) ...
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -211,8 +276,23 @@ wxplot3d (up2(x,y), [x, -5, 5], [y, -5, 5])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Problems now at x or y = 1.
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 wxplot3d (up2(x,y), [x, 1.5, 5], [y, 1.5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Comparing up2(x,y) with up(x,y) :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d (up2(x,y)/up(x,y), [x, 1.5, 5], [y, 1.5, 5])$
 /* [wxMaxima: input   end   ] */
 
 
