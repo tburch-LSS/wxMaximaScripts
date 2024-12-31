@@ -72,13 +72,18 @@ down(a,down(b,c));
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+diff(down(a,b),a,1);
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
 Let's have a look:
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-wxplot2d ([down(x,x),down(x,x+3),down(x,2 .x),down(x,2 .x+3),down(x,3 .x),down(x,3 .x+3)], [x, -2, 2])$
+wxplot2d ([down(x,x),down(x,x+3),down(x,2*x),down(x,2*x+3),down(x,3*x),down(x,3*x+3)], [x, -2, 2])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -99,6 +104,11 @@ wxplot3d ((x+y)/down(x,y), [x, -5, 5], [y, -5, 5])$
 
 /* [wxMaxima: input   start ] */
 wxplot3d ((x+y)/down(x,y), [x, -0.5, 5], [y, -0.5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([2*x/down(x,x), 3*x/down(x,2*x)], [x, -5, 5], [y, -20, 20])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -133,13 +143,18 @@ down2(x,x);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+diff(down2(a,b),a,1);
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
 Let's take a look...
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2 .x),down2(x,3 .x)], [x, -2, 2])$
+wxplot2d ([down2(x,x),down2(x,x+1),down2(x,2*x),down2(x,3*x)], [x, -2, 2])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -163,6 +178,11 @@ wxplot3d (down(x,y)/down2(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+wxplot2d ([down(x,x)/down2(x,x), down(x,2*x)/down2(x,2*x)], [x, -5, 5], [y, -20, 20])$
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
 Let's take a look in the "up" direction for an operation which is distrubutive over multiplication. Defining "star" (or "up"):  a * (b . c) = (a * b) . (a * c) ...
 Or:  up(a,b.c) = up(a,b) . up(a,c) ...
@@ -170,22 +190,27 @@ Or:  up(a,b.c) = up(a,b) . up(a,c) ...
 
 
 /* [wxMaxima: input   start ] */
-str_eq : Str(a,b) = exp(log(a).log(b));
+str_eq : Str(a,b) = exp(log(a)*log(b));
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-up(a,b) := exp(log(a).log(b));
+up(a,b) := radcan(exp(log(a)*log(b)));
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-up(a,b.c);
+up(a,b);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-up(a,b) . up(a,c);
+up(a,b*c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(a,b) * up(a,c);
 /* [wxMaxima: input   end   ] */
 
 
@@ -202,12 +227,22 @@ log( up(exp(a),exp(b)) );
 
 /* [wxMaxima: comment start ]
 yes!
-up(a,b) is the same as:
+up(a,b) could also be expressed with b as the base:
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-a^log(b); b^log(a);
+is( up(a,b) = b^log(a) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+... although it seems maxima has trouble with that realization.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+diff(up(a,b),a,1);
 /* [wxMaxima: input   end   ] */
 
 
@@ -237,7 +272,7 @@ Compare with x.y :
 
 
 /* [wxMaxima: input   start ] */
-wxplot3d (up(x,y)/(x.y), [x, 1, 10], [y, 1, 10])$
+wxplot3d (up(x,y)/(x*y), [x, 1, 10], [y, 1, 10])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -247,7 +282,7 @@ And x.y with x+y :
 
 
 /* [wxMaxima: input   start ] */
-wxplot3d (x.y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
+wxplot3d (x*y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -257,7 +292,7 @@ Now to be distributive over "up": up2( a , up(b,c) ) = up( up2(a,b) , up2(a,c) )
 
 
 /* [wxMaxima: input   start ] */
-up2(a,b) := exp( up(log(a),log(b)) );
+up2(a,b) := radcan( exp( up(log(a),log(b)) ) );
 /* [wxMaxima: input   end   ] */
 
 
@@ -267,8 +302,18 @@ up2(a,up(b,c));
 
 
 /* [wxMaxima: input   start ] */
-up2(2,2);
+diff(up2(a,b),a,1);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(x,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Taking a look...
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
