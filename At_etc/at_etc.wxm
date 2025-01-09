@@ -27,7 +27,8 @@ down(a+b,a+c);
 
 
 /* [wxMaxima: comment start ]
-yes! This should work with any base for the power / log's:
+yes!
+This should work with any base for the power / log's:
    [wxMaxima: comment end   ] */
 
 
@@ -38,6 +39,7 @@ yes! This should work with any base for the power / log's:
 
 /* [wxMaxima: comment start ]
 yep!
+
 some values:
    [wxMaxima: comment end   ] */
 
@@ -63,7 +65,7 @@ down(x,x);
 
 
 /* [wxMaxima: comment start ]
-associative:
+Associative:
    [wxMaxima: comment end   ] */
 
 
@@ -73,7 +75,9 @@ down(a,down(b,c));
 
 
 /* [wxMaxima: input   start ] */
-diff(down(a,b),a,1);
+diff(down(a,b),a);
+diff(down(a,b),b);
+diff(diff(down(a,b),b),a);
 /* [wxMaxima: input   end   ] */
 
 
@@ -144,7 +148,7 @@ down2(x,x);
 
 
 /* [wxMaxima: input   start ] */
-diff(down2(a,b),a,1);
+diff(down2(a,b),a);
 /* [wxMaxima: input   end   ] */
 
 
@@ -195,7 +199,7 @@ str_eq : Str(a,b) = exp(log(a)*log(b));
 
 
 /* [wxMaxima: input   start ] */
-up(a,b) := radcan(exp(log(a)*log(b)));
+up(a,b) := radcan( exp(log(a)*log(b)) );
 /* [wxMaxima: input   end   ] */
 
 
@@ -227,22 +231,28 @@ log( up(exp(a),exp(b)) );
 
 /* [wxMaxima: comment start ]
 yes!
+
 up(a,b) could also be expressed with b as the base:
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
 is( up(a,b) = b^log(a) );
+is( up(a,b) = a^log(b) );
+is( up(b,a) = a^log(b) );
+is( up(a,b) = up(b,a) );
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: comment start ]
-... although it seems maxima has trouble with that realization.
+... although it seems maxima has trouble with that realization in the present form...?
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-diff(up(a,b),a,1);
+diff(up(a,b),a);
+diff(up(a,b),b);
+diff(diff(up(a,b),a),b);
 /* [wxMaxima: input   end   ] */
 
 
@@ -302,7 +312,7 @@ up2(a,up(b,c));
 
 
 /* [wxMaxima: input   start ] */
-diff(up2(a,b),a,1);
+diff(up2(a,b),a);
 /* [wxMaxima: input   end   ] */
 
 
