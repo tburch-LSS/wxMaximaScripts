@@ -1,8 +1,31 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
 /* [ Created with wxMaxima version 20.12.1 ] */
 /* [wxMaxima: comment start ]
-Define the @ (or 'down') relation such that addition is distributive: a + (b @ c) = (a+b) @ (a+c)...
-Or: a + down(b,c) = down(a+b,a+c).
+Note that, for multiplcation and addition, the distributive property can be "revealed" through natural logarithms:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+add(a,b) := log(exp(a)*exp(b));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+add(a,b);
+add(c*a,c*b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+ratsimp(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Placing the multiplication between the exponentials in the logarithm, we arrive at the relation (addition) over which it is disributive. We can try the same with + between the exp's...
+
+Define the @ (or "down") relation such that addition is distributive over it: a + (b @ c) = (a+b) @ (a+c)...
+Or: a + down(b,c) = down(a+b,a+c). Trying the following ansatz:
    [wxMaxima: comment end   ] */
 
 
@@ -17,7 +40,7 @@ down(a,b) := radcan( log(exp(a) + exp(b)) );
 
 
 /* [wxMaxima: comment start ]
-check:
+Check:
    [wxMaxima: comment end   ] */
 
 
