@@ -1,7 +1,7 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
 /* [ Created with wxMaxima version 20.12.1 ] */
 /* [wxMaxima: comment start ]
-Note that, for multiplcation and addition, the distributive property can be "revealed" through natural logarithms:
+Note that, for multiplcation and addition, the distributive property can be "revealed" through exponentials and their inverse, the natural logarithms:
    [wxMaxima: comment end   ] */
 
 
@@ -51,19 +51,25 @@ down(a+b,a+c);
 
 /* [wxMaxima: comment start ]
 yes!
-This should work with any base for the power / log's:
+
+This should work with any base for the power / log's: e.g.,
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
- radcan( log(10^(a+b) + 10^(a+c)) );
+ radcan( log10(10^(a+b) + 10^(a+c)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(%);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: comment start ]
 yep!
 
-some values:
+Some values:
    [wxMaxima: comment end   ] */
 
 
