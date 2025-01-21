@@ -57,12 +57,17 @@ This should work with any base for the power / log's: e.g.,
 
 
 /* [wxMaxima: input   start ] */
+log10(x) := log(x) / log(10);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
  radcan( log10(10^(a+b) + 10^(a+c)) );
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-factor(%);
+logcontract(%);
 /* [wxMaxima: input   end   ] */
 
 
@@ -141,7 +146,7 @@ wxplot3d ((x+y)/down(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 
 
 /* [wxMaxima: input   start ] */
-wxplot2d ([2*x/down(x,x), 3*x/down(x,2*x)], [x, -5, 5], [y, -20, 20])$
+wxplot2d ([2*x/down(x,x), 3*x/down(x,2*x),(x+1)/down(x,1),(x-1)/down(x,-1)], [x, -5, 5], [y, -20, 20])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -212,7 +217,7 @@ wxplot3d (down(x,y)/down2(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 
 
 /* [wxMaxima: input   start ] */
-wxplot2d ([down(x,x)/down2(x,x), down(x,2*x)/down2(x,2*x)], [x, -5, 5], [y, -20, 20])$
+wxplot2d ([down(x,x)/down2(x,x), down(x,2*x)/down2(x,2*x),down(x,1)/down2(x,1),down(x,-1)/down2(x,-1)], [x, -5, 5], [y, -20, 20])$
 /* [wxMaxima: input   end   ] */
 
 
