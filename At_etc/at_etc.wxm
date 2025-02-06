@@ -72,9 +72,9 @@ logcontract(%);
 
 
 /* [wxMaxima: comment start ]
-yep!
+yep! (The ambiguity probably speak volumes...)
 
-Some values:
+Some values with base ⅇ:
    [wxMaxima: comment end   ] */
 
 
@@ -147,6 +147,48 @@ wxplot3d ((x+y)/down(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 
 /* [wxMaxima: input   start ] */
 wxplot2d ([2*x/down(x,x), 3*x/down(x,2*x),(x+1)/down(x,1),(x-1)/down(x,-1)], [x, -5, 5], [y, -20, 20])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+We can also consider a "down-like" operation with a minus instead a plus:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_min(a,b) := radcan( log(exp(a) - exp(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+As we've already seen, with times, we achieve addition. With divide, one achieves subtraction:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_div(a,b) := radcan( log(exp(a) / exp(b)) );
+down_div(a,b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Given down, down_min, and down_div, one is free o define a "down derivative":
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_diff_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, 0, plus);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_diff_f(x) := down_min( f(down(x,0)), f(x) );
+down_diff_f(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Eig_Df_eq : down_diff_f(x) = f(x);
 /* [wxMaxima: input   end   ] */
 
 
@@ -281,6 +323,11 @@ is( up(a,b) = up(b,a) );
 /* [wxMaxima: comment start ]
 ... although it seems maxima has trouble with that realization in the present form...?
    [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(x,x);
+/* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
