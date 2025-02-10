@@ -1,6 +1,28 @@
 /* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
 /* [ Created with wxMaxima version 20.12.1 ] */
+/* [wxMaxima: title   start ]
+Distributivity, Extended
+   [wxMaxima: title   end   ] */
+
+
 /* [wxMaxima: comment start ]
+(Tommy Burch, 08.2024--02.2025)
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+At or Down
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: subsect start ]
+At_+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+This all started back in the late '90s at the UofA in a physics lab prep session (with R. McCroskey and R. Haar, among others). The discussion hinged on finding an operation (i termed it 'at' with the symbol @) over which addition was distributive. The exp / log solution below i came up with followed later the same day...
+
 Note that, for multiplcation and addition, the distributive property can be "revealed" through exponentials and their inverse, the natural logarithms:
    [wxMaxima: comment end   ] */
 
@@ -150,6 +172,11 @@ wxplot2d ([2*x/down(x,x), 3*x/down(x,2*x),(x+1)/down(x,1),(x-1)/down(x,-1)], [x,
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: subsect start ]
+At_-,*,/
+   [wxMaxima: subsect end   ] */
+
+
 /* [wxMaxima: comment start ]
 We can also consider a "down-like" operation with a minus instead a plus:
    [wxMaxima: comment end   ] */
@@ -171,25 +198,40 @@ down_div(a,b);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: subsect start ]
+Down differentiation
+   [wxMaxima: subsect end   ] */
+
+
 /* [wxMaxima: comment start ]
 Given down, down_min, and down_div, one is free o define a "down derivative":
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-down_diff_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, 0, plus);
+Df_Dx_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, 0, plus);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-down_diff_f(x) := down_min( f(down(x,0)), f(x) );
-down_diff_f(x);
+Df_Dx(x) := down_min( f(down(x,0)), f(x) );
+Df_Dx(x);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Eig_Df_eq : down_diff_f(x) = f(x);
+Eig_Df_eq : Df_Dx(x) = f(x);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+One can verify that in this case, the function must be f(x) = log(2) * exp(x).
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Down2
+   [wxMaxima: section end   ] */
 
 
 /* [wxMaxima: comment start ]
@@ -261,6 +303,11 @@ wxplot3d (down(x,y)/down2(x,y), [x, -0.5, 5], [y, -0.5, 5])$
 /* [wxMaxima: input   start ] */
 wxplot2d ([down(x,x)/down2(x,x), down(x,2*x)/down2(x,2*x),down(x,1)/down2(x,1),down(x,-1)/down2(x,-1)], [x, -5, 5], [y, -20, 20])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Up
+   [wxMaxima: section end   ] */
 
 
 /* [wxMaxima: comment start ]
@@ -375,6 +422,11 @@ And x.y with x+y :
 /* [wxMaxima: input   start ] */
 wxplot3d (x*y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: section start ]
+Up2
+   [wxMaxima: section end   ] */
 
 
 /* [wxMaxima: comment start ]
