@@ -15,14 +15,12 @@ At or Down
    [wxMaxima: section end   ] */
 
 
-/* [wxMaxima: subsect start ]
-At_+
-   [wxMaxima: subsect end   ] */
+/* [wxMaxima: comment start ]
+This all started back in the late '90s at the UofA in a physics lab prep session (with R. McCroskey and R. Haar, among others). The discussion hinged on finding an operation (i termed it 'at' with the symbol @) over which addition was distributive. The exp / log solution below i came up with followed later the same day...
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: comment start ]
-This all started back in the late '90s at the UofA in a physics lab prep session (with R. McCroskey and R. Haar, among others). The discussion hinged on finding an operation (i termed it 'at' with the symbol @) over which addition was distributive. The exp / log solution below i came up with followed later the same day...
-
 Note that, for multiplcation and addition, the distributive property can be "revealed" through exponentials and their inverse, the natural logarithms:
    [wxMaxima: comment end   ] */
 
@@ -45,7 +43,15 @@ ratsimp(%);
 
 /* [wxMaxima: comment start ]
 Placing the multiplication between the exponentials in the logarithm, we arrive at the relation (addition) over which it is disributive. We can try the same with + between the exp's...
+   [wxMaxima: comment end   ] */
 
+
+/* [wxMaxima: subsect start ]
+At_+
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
 Define the @ (or "down") relation such that addition is distributive over it: a + (b @ c) = (a+b) @ (a+c)...
 Or: a + down(b,c) = down(a+b,a+c). Trying the following ansatz:
    [wxMaxima: comment end   ] */
@@ -94,7 +100,7 @@ logcontract(%);
 
 
 /* [wxMaxima: comment start ]
-yep! (The ambiguity probably speak volumes...)
+yep! (The ambiguity probably speak volumes... see, e.g., M. Burgin, arXiv:1010.3287)
 
 Some values with base ⅇ:
    [wxMaxima: comment end   ] */
@@ -204,7 +210,7 @@ Down differentiation
 
 
 /* [wxMaxima: comment start ]
-Given down, down_min, and down_div, one is free o define a "down derivative":
+Given down, down_min, and down_div, one is free to define a "down derivative":
    [wxMaxima: comment end   ] */
 
 
@@ -225,7 +231,64 @@ Eig_Df_eq : Df_Dx(x) = f(x);
 
 
 /* [wxMaxima: comment start ]
-One can verify that in this case, the function must be f(x) = log(2) * exp(x).
+One can verify that in this case, the function must be f(x) = log(2) * exp(x) + c:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := log(2)*exp(x) + c;
+Df_Dx(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Other values:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := x;
+Df_Dx(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := x + c;
+Df_Dx(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := A*x + c;
+Df_Dx(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Chain rule??? (with @_*, or +, instead of times):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := g(x) + h(x);
+Df_Dx(x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+approaching from the other side...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Dg_Dx(x) := down_min( g(down(x,0)), g(x) );
+Dh_Dx(x) := down_min( h(down(x,0)), h(x) );
+down( Dg_Dx(x)+h(x) , g(x)+Dh_Dx(x) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+hmm...?
    [wxMaxima: comment end   ] */
 
 
