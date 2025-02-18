@@ -481,9 +481,34 @@ Up differentiation
 
 
 /* [wxMaxima: input   start ] */
-Uf(x,h) := f(up(x,h)) / f(x) ;
-Uf(x,h);
-Uf_Ux(x) := ratsimp( limit( Uf(x,h) ^(1/h) , h, 1, plus) );
+up(a,h);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Uf(a,h) := f(up(a,h)) / f(a) ;
+Uf(a,h);
+Uf_Ux(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := a+c;
+Uf(a,h);
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := g(a) * p(a);
+Uf(a,h);
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(f);
 /* [wxMaxima: input   end   ] */
 
 
