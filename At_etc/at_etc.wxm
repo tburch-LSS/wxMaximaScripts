@@ -123,6 +123,7 @@ down(x,0);
 
 /* [wxMaxima: input   start ] */
 down(x,x);
+down(x-log(2),x-log(2));
 /* [wxMaxima: input   end   ] */
 
 
@@ -133,6 +134,7 @@ Associative:
 
 /* [wxMaxima: input   start ] */
 down(a,down(b,c));
+down(down(a,b),c);
 /* [wxMaxima: input   end   ] */
 
 
@@ -194,6 +196,29 @@ down_min(a,b) := radcan( log(exp(a) - exp(b)) );
 
 
 /* [wxMaxima: comment start ]
+Associativity:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down(down_min(a,b),c);
+down_min(down(a,c),b);
+down(down_min(a,b),down_min(c,d));
+down(down_min(a,d),down_min(c,b));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Same distributive property:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_min(a+b,a+c);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
 As we've already seen, with times, we achieve addition. With divide, one achieves subtraction:
    [wxMaxima: comment end   ] */
 
@@ -210,18 +235,38 @@ Down differentiation
 
 
 /* [wxMaxima: comment start ]
-Given down, down_min, and down_div, one is free to define a "down derivative":
+Given down, down_min, and down_div, one is free to define a "down derivative". However, we must take care with the notion of infinitesimals: normally h-->0 in the definition of the derivative, but here we need h-->-∞ to approach the @ identity (x @ -∞ = x)...
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Df_Dx_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, 0, plus);
+Df_Dx_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, -∞);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Df_Dx(x) := down_min( f(down(x,0)), f(x) );
-Df_Dx(x);
+Df(x,h) := down_min( f(down(x,h)) , f(x) );
+Df(x,h);
+Df_Dx(x) := ratsimp( limit( Df(x,h) - h , h, minf) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := A*x + c;
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := down( g(x) , p(x) );
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(f);
 /* [wxMaxima: input   end   ] */
 
 
@@ -230,66 +275,9 @@ Eig_Df_eq : Df_Dx(x) = f(x);
 /* [wxMaxima: input   end   ] */
 
 
-/* [wxMaxima: comment start ]
-One can verify that in this case, the function must be f(x) = log(2) * exp(x) + c:
-   [wxMaxima: comment end   ] */
-
-
 /* [wxMaxima: input   start ] */
-f(x) := log(2)*exp(x) + c;
-Df_Dx(x);
+kill(f);
 /* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: comment start ]
-Other values:
-   [wxMaxima: comment end   ] */
-
-
-/* [wxMaxima: input   start ] */
-f(x) := x;
-Df_Dx(x);
-/* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: input   start ] */
-f(x) := x + c;
-Df_Dx(x);
-/* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: input   start ] */
-f(x) := A*x + c;
-Df_Dx(x);
-/* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: comment start ]
-Chain rule??? (with @_*, or +, instead of times):
-   [wxMaxima: comment end   ] */
-
-
-/* [wxMaxima: input   start ] */
-f(x) := g(x) + h(x);
-Df_Dx(x);
-/* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: comment start ]
-approaching from the other side...
-   [wxMaxima: comment end   ] */
-
-
-/* [wxMaxima: input   start ] */
-Dg_Dx(x) := down_min( g(down(x,0)), g(x) );
-Dh_Dx(x) := down_min( h(down(x,0)), h(x) );
-down( Dg_Dx(x)+h(x) , g(x)+Dh_Dx(x) );
-/* [wxMaxima: input   end   ] */
-
-
-/* [wxMaxima: comment start ]
-hmm...?
-   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: section start ]
@@ -484,6 +472,18 @@ And x.y with x+y :
 
 /* [wxMaxima: input   start ] */
 wxplot3d (x*y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
+Up differentiation
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Uf(x,h) := f(up(x,h)) / f(x) ;
+Uf(x,h);
+Uf_Ux(x) := ratsimp( limit( Uf(x,h) ^(1/h) , h, 1, plus) );
 /* [wxMaxima: input   end   ] */
 
 
