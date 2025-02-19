@@ -480,13 +480,26 @@ Up differentiation
    [wxMaxima: subsect end   ] */
 
 
+/* [wxMaxima: comment start ]
+To avoid problems with alphabetical preferences...
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
+up(x,h);
 up(a,h);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+we'll use 'a' as the independent variable here.
+
+Working with up_/, up_+ as times, up_- as divide, and the new "up"-identity, h-->1...
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
-Uf(a,h) := f(up(a,h)) / f(a) ;
+Uf(a,h) := f(a*h) / f(a) ;
 Uf(a,h);
 Uf_Ux(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
 Uf_Ux(a);
@@ -494,10 +507,49 @@ Uf_Ux(a);
 
 
 /* [wxMaxima: input   start ] */
-f(a) := a+c;
+Uf_Ux(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, 1, plus));
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := a + c;
 Uf(a,h);
 Uf_Ux(a);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+assume(y>1);
+f(a) := a^y;
+Uf(a,h);
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+negative;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := exp(a^y);
+Uf(a,h);
+Uf_Ux(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>a</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
 
 
 /* [wxMaxima: input   start ] */
