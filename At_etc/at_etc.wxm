@@ -248,6 +248,7 @@ Df_Dx_eq : Df_Dx = limit( down_min( f(down(x,h)) , f(x) ) - h , h, -∞);
 Df(x,h) := down_min( f(down(x,h)) , f(x) );
 Df(x,h);
 Df_Dx(x) := ratsimp( limit( Df(x,h) - h , h, minf) );
+Df_Dx(x);
 /* [wxMaxima: input   end   ] */
 
 
@@ -259,10 +260,22 @@ Df_Dx(x) ;
 
 
 /* [wxMaxima: input   start ] */
+f(x) := exp(A*x + c);
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
 f(x) := down( g(x) , p(x) );
 Df(x,h);
 Df_Dx(x) ;
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+So the down-derivative maintains not only the extended distributivity, but also the property that the exponential function keeps its special role: D_Dx (ⅇ^x) = ⅇ^x.
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -501,21 +514,21 @@ Working with up_/, up_+ as times, up_- as divide, and the new "up"-identity, h--
 /* [wxMaxima: input   start ] */
 Uf(a,h) := f(a*h) / f(a) ;
 Uf(a,h);
-Uf_Ux(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
-Uf_Ux(a);
+Uf_Ua(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Uf_Ux(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, 1, plus));
-Uf_Ux(a);
+Uf_Ua(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, 1, plus));
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-f(a) := a + c;
+f(a) := n*a + c;
 Uf(a,h);
-Uf_Ux(a);
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
 
@@ -523,7 +536,7 @@ Uf_Ux(a);
 assume(y>1);
 f(a) := a^y;
 Uf(a,h);
-Uf_Ux(a);
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 /* [wxMaxima: question  start ] */
 <math><st>Is </st><mi>y</mi><st> positive, negative or zero?</st></math>
@@ -536,7 +549,7 @@ negative;
 /* [wxMaxima: input   start ] */
 f(a) := exp(a^y);
 Uf(a,h);
-Uf_Ux(a);
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 /* [wxMaxima: question  start ] */
 <math><st>Is </st><mi>y</mi><st> an </st><mi>integer</mi><st>?</st></math>
@@ -555,8 +568,13 @@ no;
 /* [wxMaxima: input   start ] */
 f(a) := g(a) * p(a);
 Uf(a,h);
-Uf_Ux(a);
+Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+So the up-derivative maintains not only the extended distributivity, but also the property that the exponential function keeps its special role: U_Ua (ⅇ^a) = ⅇ^a.
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
