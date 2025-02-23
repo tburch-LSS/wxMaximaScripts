@@ -253,14 +253,21 @@ Df_Dx(x);
 
 
 /* [wxMaxima: input   start ] */
-f(x) := A*x + c;
+f(x) := A*x^b + c;
 Df(x,h);
 Df_Dx(x) ;
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-f(x) := exp(A*x + c);
+f(x) := log(A*x^b + c);
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := exp(A*x^b + c);
 Df(x,h);
 Df_Dx(x) ;
 /* [wxMaxima: input   end   ] */
@@ -279,6 +286,13 @@ So the down-derivative maintains not only the extended distributivity, but also 
 
 
 /* [wxMaxima: input   start ] */
+f(x) := b^(A*x+c);
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
 kill(f);
 /* [wxMaxima: input   end   ] */
 
@@ -286,6 +300,11 @@ kill(f);
 /* [wxMaxima: input   start ] */
 Eig_Df_eq : Df_Dx(x) = f(x);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+As we can see from the previous solutions of Df_Dx, this DE is uniquely solved by f(x)=ⅇ^x.
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -547,7 +566,7 @@ negative;
 
 
 /* [wxMaxima: input   start ] */
-f(a) := exp(a^y);
+f(a) := exp(b*a^y + c);
 Uf(a,h);
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
@@ -566,6 +585,38 @@ no;
 
 
 /* [wxMaxima: input   start ] */
+f(a) := b^(a^y + c);
+Uf(a,h);
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><mi>-</mi><mn>1</mn><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := exp(b^(a^y + c));
+Uf(a,h);
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>c</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
 f(a) := g(a) * p(a);
 Uf(a,h);
 Uf_Ua(a);
@@ -575,6 +626,25 @@ Uf_Ua(a);
 /* [wxMaxima: comment start ]
 So the up-derivative maintains not only the extended distributivity, but also the property that the exponential function keeps its special role: U_Ua (ⅇ^a) = ⅇ^a.
    [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(a) := y^exp(a);
+Uf(a,h);
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>n</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>a</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
 
 
 /* [wxMaxima: input   start ] */
