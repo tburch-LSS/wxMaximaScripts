@@ -312,6 +312,19 @@ kill(f);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Alternative expressions for Df_Dx(x) (x=log(z)):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+x = log(z);
+log('diff( exp(f(log(z))) ,z,1));
+log(diff( exp(f(log(z))) ,z,1));
+f(x) - x + log(diff(f(x),x,1));
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: section start ]
 Down2
    [wxMaxima: section end   ] */
@@ -553,7 +566,7 @@ Uf_Ua(a);
 
 /* [wxMaxima: input   start ] */
 assume(y>1);
-f(a) := a^y;
+f(a) := a^y + c;
 Uf(a,h);
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
@@ -629,10 +642,16 @@ So the up-derivative maintains not only the extended distributivity, but also th
 
 
 /* [wxMaxima: input   start ] */
-f(a) := y^exp(a);
+f(a) := b^exp(a^y + c);
 Uf(a,h);
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>c</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
 /* [wxMaxima: question  start ] */
 <math><st>Is </st><mi>n</mi><st> an </st><mi>integer</mi><st>?</st></math>
 /* [wxMaxima: question  end   ] */
@@ -649,6 +668,19 @@ no;
 
 /* [wxMaxima: input   start ] */
 kill(f);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Alternative expressions for Uf_Ua(a) (a=exp(z)):
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+a = exp(z);
+exp('diff( log(f(exp(z))) ,z,1));
+exp(diff( log(f(exp(z))) ,z,1));
+exp( a*f(a) / diff(f(a),a,1) );
 /* [wxMaxima: input   end   ] */
 
 
