@@ -313,7 +313,7 @@ kill(f);
 
 
 /* [wxMaxima: comment start ]
-Alternative expressions for Df_Dx(x) (x=log(z)):
+Alternative expressions for Df_Dx(x) (with x=log(z)):
    [wxMaxima: comment end   ] */
 
 
@@ -672,7 +672,7 @@ kill(f);
 
 
 /* [wxMaxima: comment start ]
-Alternative expressions for Uf_Ua(a) (a=exp(z)):
+Alternative expressions for Uf_Ua(a) (with a=exp(z)):
    [wxMaxima: comment end   ] */
 
 
@@ -680,7 +680,7 @@ Alternative expressions for Uf_Ua(a) (a=exp(z)):
 a = exp(z);
 exp('diff( log(f(exp(z))) ,z,1));
 exp(diff( log(f(exp(z))) ,z,1));
-exp( a*f(a) / diff(f(a),a,1) );
+exp( a * diff(f(a),a,1) / f(a) );
 /* [wxMaxima: input   end   ] */
 
 
