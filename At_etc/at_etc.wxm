@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, 08.2024--02.2025)
+(Tommy Burch, 08.2024--03.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -681,6 +681,7 @@ a = exp(z);
 exp('diff( log(f(exp(z))) ,z,1));
 exp(diff( log(f(exp(z))) ,z,1));
 exp( a * diff(f(a),a,1) / f(a) );
+exp('diff( log(f(a)) ,log(a),1));
 /* [wxMaxima: input   end   ] */
 
 
