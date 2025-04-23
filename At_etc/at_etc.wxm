@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, 08.2024--03.2025)
+(Tommy Burch, 08.2024--04.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -287,6 +287,13 @@ So the down-derivative maintains not only the extended distributivity, but also 
 
 /* [wxMaxima: input   start ] */
 f(x) := b^(A*x+c);
+Df(x,h);
+Df_Dx(x) ;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f(x) := log(x);
 Df(x,h);
 Df_Dx(x) ;
 /* [wxMaxima: input   end   ] */
@@ -667,6 +674,13 @@ no;
 
 
 /* [wxMaxima: input   start ] */
+f(a) := log(a);
+Uf(a,h);
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
 kill(f);
 /* [wxMaxima: input   end   ] */
 
@@ -682,6 +696,18 @@ exp('diff( log(f(exp(z))) ,z,1));
 exp(diff( log(f(exp(z))) ,z,1));
 exp( a * diff(f(a),a,1) / f(a) );
 exp('diff( log(f(a)) ,log(a),1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+This leads to an alternative expression for the "normal" derivative, d/dx, in terms of the down derivative:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(x + 'Df_Dx(x) - f(x));
+z = log(x); g(x) = log(f(x));
+exp('Dg_Dz(x));
 /* [wxMaxima: input   end   ] */
 
 
