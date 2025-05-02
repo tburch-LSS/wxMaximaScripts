@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, 08.2024--04.2025)
+(Tommy Burch, on and off from 08.2024 to 04.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -100,7 +100,7 @@ logcontract(%);
 
 
 /* [wxMaxima: comment start ]
-yep! (The ambiguity probably speak volumes... see, e.g., M. Burgin, arXiv:1010.3287)
+yep! (The ambiguity probably speak volumes... see, e.g., M. Burgin, arXiv:1010.3287 : there, the focus appears not to be in maintaining distributivity, unlike here.)
 
 Some values with base ⅇ:
    [wxMaxima: comment end   ] */
@@ -408,6 +408,11 @@ wxplot2d ([down(x,x)/down2(x,x), down(x,2*x)/down2(x,2*x),down(x,1)/down2(x,1),d
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+wxplot2d (down(x,x)/down2(x,x), [x, -1, 100])$
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: section start ]
 Up
    [wxMaxima: section end   ] */
@@ -477,6 +482,7 @@ is( up(a,b) = up(b,a) );
 
 /* [wxMaxima: input   start ] */
 up(x,x);
+x^log(x);
 /* [wxMaxima: input   end   ] */
 
 
@@ -514,6 +520,27 @@ Compare with x.y :
 
 /* [wxMaxima: input   start ] */
 wxplot3d (up(x,y)/(x*y), [x, 1, 10], [y, 1, 10])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d (log(up(x,x)/(x*x)), [x, 1, 100])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Using up_/ for the "ratio"...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+exp(log(up(x,x))/log(x*x));
+radcan(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d (exp(log(up(x,x))/log(x*x)), [x, 1, 100])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -738,6 +765,7 @@ diff(up2(a,b),a);
 
 /* [wxMaxima: input   start ] */
 up2(x,x);
+exp(log(x)^log(x));
 /* [wxMaxima: input   end   ] */
 
 
@@ -768,6 +796,32 @@ Comparing up2(x,y) with up(x,y) :
 
 /* [wxMaxima: input   start ] */
 wxplot3d (up2(x,y)/up(x,y), [x, 1.5, 5], [y, 1.5, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d (log(up2(x,x)/up(x,x)), [x, 1.5, 5000])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Using up2_/ for the "ratio"...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up_div(a,b) := radcan( exp(log(a) / log(b)) );
+up2_div(a,b) := radcan( exp( up_div(log(a),log(b)) ) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2_div(up2(x,x),up(x,x));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d (up2_div(up2(x,x),up(x,x)), [x, 1.5, 5000])$
 /* [wxMaxima: input   end   ] */
 
 
