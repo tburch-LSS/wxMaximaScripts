@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, on and off from 08.2024 to 04.2025)
+(Tommy Burch, on and off from 08.2024 to 05.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -226,6 +226,16 @@ As we've already seen, with times, we achieve addition. With divide, one achieve
 /* [wxMaxima: input   start ] */
 down_div(a,b) := radcan( log(exp(a) / exp(b)) );
 down_div(a,b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Using @_/ or down_div for the "ratio" of + and @...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d (2*x - down(x,x), [x, -5, 5])$
 /* [wxMaxima: input   end   ] */
 
 
@@ -477,6 +487,10 @@ is( up(a,b) = up(b,a) );
 
 /* [wxMaxima: comment start ]
 ... although it seems maxima has trouble with that realization in the present form...?
+
+So one advantage of up(a,b), over exponentiation (a^b or b^a), can be seen immediately: namely commutativity... up(a,b)=up(b,a).
+
+Some special values:
    [wxMaxima: comment end   ] */
 
 
@@ -519,6 +533,7 @@ Compare with x.y :
 
 
 /* [wxMaxima: input   start ] */
+up(x,y)/(x*y);
 wxplot3d (up(x,y)/(x*y), [x, 1, 10], [y, 1, 10])$
 /* [wxMaxima: input   end   ] */
 
@@ -529,7 +544,7 @@ wxplot2d (log(up(x,x)/(x*x)), [x, 1, 100])$
 
 
 /* [wxMaxima: comment start ]
-Using up_/ for the "ratio"...
+Using up_div for the "ratio"...
    [wxMaxima: comment end   ] */
 
 
@@ -800,12 +815,13 @@ wxplot3d (up2(x,y)/up(x,y), [x, 1.5, 5], [y, 1.5, 5])$
 
 
 /* [wxMaxima: input   start ] */
+log(up2(x,x)/up(x,x));
 wxplot2d (log(up2(x,x)/up(x,x)), [x, 1.5, 5000])$
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: comment start ]
-Using up2_/ for the "ratio"...
+Using up2_div for the "ratio"...
    [wxMaxima: comment end   ] */
 
 
@@ -822,6 +838,12 @@ up2_div(up2(x,x),up(x,x));
 
 /* [wxMaxima: input   start ] */
 wxplot2d (up2_div(up2(x,x),up(x,x)), [x, 1.5, 5000])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up_div(up2(x,x),up(x,x));
+wxplot2d (up_div(up2(x,x),up(x,x)), [x, 3, 5000])$
 /* [wxMaxima: input   end   ] */
 
 
