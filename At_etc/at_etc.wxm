@@ -78,7 +78,7 @@ down(a+b,a+c);
 
 
 /* [wxMaxima: comment start ]
-yes!
+yes! (It is also an obviously commutative operation.)
 
 This should work with any base for the power / log's: e.g.,
    [wxMaxima: comment end   ] */
@@ -100,7 +100,7 @@ logcontract(%);
 
 
 /* [wxMaxima: comment start ]
-yep! (The ambiguity probably speak volumes... see, e.g., M. Burgin, arXiv:1010.3287 : there, the focus appears not to be in maintaining distributivity, unlike here.)
+yep! The ambiguity probably speak volumes (see, e.g., M. Burgin, arXiv:1010.3287 : there, the focus appears not to be in maintaining distributivity, unlike here, where it's the main focus). It may be worth exploring whether functions other than powers/logarithms can retain distributivity... at first glance, seemingly not.
 
 Some values with base ⅇ:
    [wxMaxima: comment end   ] */
@@ -235,6 +235,7 @@ Using @_/ or down_div for the "ratio" of + and @...
 
 
 /* [wxMaxima: input   start ] */
+down_div(x+x,down(x,x));
 wxplot2d (2*x - down(x,x), [x, -5, 5])$
 /* [wxMaxima: input   end   ] */
 
@@ -245,7 +246,7 @@ Down differentiation
 
 
 /* [wxMaxima: comment start ]
-Given down, down_min, and down_div, one is free to define a "down derivative". However, we must take care with the notion of infinitesimals: normally h-->0 in the definition of the derivative, but here we need h-->-∞ to approach the @ identity (x @ -∞ = x)...
+Given down, down_min, and down_div, one is free to define a "down derivative". However, we must take care with the notion of infinitesimals: normally h-->0 in the definition of the derivative, but here we need h-->-∞ to approach the @_+ identity (x @ -∞ = x)...
    [wxMaxima: comment end   ] */
 
 
@@ -370,6 +371,8 @@ down2(down(a,b),down(a,c));
 
 /* [wxMaxima: comment start ]
 yes!
+
+down2-identity would have to be at ∞+iπ.
    [wxMaxima: comment end   ] */
 
 
@@ -486,10 +489,28 @@ is( up(a,b) = up(b,a) );
 
 
 /* [wxMaxima: comment start ]
-... although it seems maxima has trouble with that realization in the present form...?
+... although it seems Maxima has trouble (it enforces some type of alphabetization?) with that realization in the present form...?
 
-So one advantage of up(a,b), over exponentiation (a^b or b^a), can be seen immediately: namely commutativity... up(a,b)=up(b,a).
+So one advantage of up(a,b), over "naive" exponentiation (a^b or b^a), can be seen immediately: namely commutativity... up(a,b)=up(b,a).
+   [wxMaxima: comment end   ] */
 
+
+/* [wxMaxima: comment start ]
+Identity for up_+:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(ⅇ,a);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+... the base ⅇ.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
 Some special values:
    [wxMaxima: comment end   ] */
 
@@ -588,20 +609,20 @@ up(a,h);
 /* [wxMaxima: comment start ]
 we'll use 'a' as the independent variable here.
 
-Working with up_/, up_+ as times, up_- as divide, and the new "up"-identity, h-->1...
+Working with up_/, up_+ as times, up_- as divide, and the new "up_+"-identity, h-->ⅇ...
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
 Uf(a,h) := f(a*h) / f(a) ;
 Uf(a,h);
-Uf_Ua(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
+Uf_Ua(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, ⅇ, plus) );
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Uf_Ua(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, 1, plus));
+Uf_Ua(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, ⅇ, plus));
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
@@ -769,7 +790,23 @@ up2(a,b) := radcan( exp( up(log(a),log(b)) ) );
 
 
 /* [wxMaxima: input   start ] */
+up(up2(a,b),up2(a,c));
 up2(a,up(b,c));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Bingo! And obviously also commutative, unlike say, tetration (^y(x) or ^x(y)), which is neither.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Identity for up2_+:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(ⅇ^ⅇ,a);
 /* [wxMaxima: input   end   ] */
 
 
