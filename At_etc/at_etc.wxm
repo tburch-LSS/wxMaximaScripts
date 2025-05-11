@@ -496,7 +496,7 @@ So one advantage of up(a,b), over "naive" exponentiation (a^b or b^a), can be se
 
 
 /* [wxMaxima: comment start ]
-Identity for up_+:
+Identity for up (or up_times):
    [wxMaxima: comment end   ] */
 
 
@@ -609,20 +609,20 @@ up(a,h);
 /* [wxMaxima: comment start ]
 we'll use 'a' as the independent variable here.
 
-Working with up_/, up_+ as times, up_- as divide, and the new "up_+"-identity, h-->ⅇ...
+Working with up_/, up_+ as times, up_- as divide, and the new "up_+"-identity, h-->1...
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
 Uf(a,h) := f(a*h) / f(a) ;
 Uf(a,h);
-Uf_Ua(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, ⅇ, plus) );
+Uf_Ua(a) := radcan( limit( exp( log(Uf(a,h)) / log(h) ) , h, 1, plus) );
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: input   start ] */
-Uf_Ua(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, ⅇ, plus));
+Uf_Ua(a) := ratsimp( limit( Uf(a,h)^(1 / log(h))  , h, 1, plus));
 Uf_Ua(a);
 /* [wxMaxima: input   end   ] */
 
