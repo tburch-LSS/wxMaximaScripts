@@ -560,8 +560,15 @@ wxplot3d (up(x,y)/(x*y), [x, 1, 10], [y, 1, 10])$
 
 
 /* [wxMaxima: input   start ] */
+up(x,x)/(x*x);
+x^(log(x)-2);
 wxplot2d (log(up(x,x)/(x*x)), [x, 1, 100])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+So up(x,x) does eventually win over x²... at x=ⅇ².
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: comment start ]
@@ -801,13 +808,18 @@ Bingo! And obviously also commutative, unlike say, tetration (^y(x) or ^x(y)), w
 
 
 /* [wxMaxima: comment start ]
-Identity for up2_+:
+Identity for up2 (or up2_times):
    [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
 up2(ⅇ^ⅇ,a);
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+... or base to the power of base. So one can imagine that for up3 it would be ⅇ^(ⅇ^ⅇ)... etc.
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: input   start ] */
@@ -852,9 +864,16 @@ wxplot3d (up2(x,y)/up(x,y), [x, 1.5, 5], [y, 1.5, 5])$
 
 
 /* [wxMaxima: input   start ] */
+up2(x,x)/up(x,x);
 log(up2(x,x)/up(x,x));
+log(x)^log(log(x))-log(x)^2;
 wxplot2d (log(up2(x,x)/up(x,x)), [x, 1.5, 5000])$
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+So up2(x,x) does eventually win over up(x,x)... at x=ⅇ^(ⅇ²).
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: comment start ]
