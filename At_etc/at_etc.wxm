@@ -10,6 +10,11 @@ Distributivity, Extended
    [wxMaxima: comment end   ] */
 
 
+/* [wxMaxima: comment start ]
+(wxMaxima does not export the cleanest of latex files, so the resulting pdf contains a number of quirks and errors)
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: section start ]
 At or Down
    [wxMaxima: section end   ] */
@@ -567,8 +572,14 @@ wxplot2d (log(up(x,x)/(x*x)), [x, 1, 100])$
 
 
 /* [wxMaxima: comment start ]
-So up(x,x) does eventually win over x²... at x=ⅇ².
+So up(x,x) does eventually win over x²... at x=ⅇ², where...
    [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(exp(2),exp(2));
+float(%), numer;
+/* [wxMaxima: input   end   ] */
 
 
 /* [wxMaxima: comment start ]
@@ -872,7 +883,18 @@ wxplot2d (log(up2(x,x)/up(x,x)), [x, 1.5, 5000])$
 
 
 /* [wxMaxima: comment start ]
-So up2(x,x) does eventually win over up(x,x)... at x=ⅇ^(ⅇ²).
+So up2(x,x) does eventually win over up(x,x)... at x=ⅇ^(ⅇ²), where...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up2(exp(exp(2)),exp(exp(2)));
+float(%), numer;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Holy Avogadro, batman!
    [wxMaxima: comment end   ] */
 
 
