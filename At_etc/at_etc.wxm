@@ -572,7 +572,28 @@ wxplot2d (log(up(x,x)/(x*x)), [x, 1, 100])$
 
 
 /* [wxMaxima: comment start ]
-So up(x,x) does eventually win over x²... at x=ⅇ², where...
+Derivative of this ratio:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+factor(diff(x^(log(x)-2),x,1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Minimum obviously at x=ⅇ:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+up(ⅇ,ⅇ);
+find_root(diff(x^(log(x)-2),x,1), x, 1, 10);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Also, up(x,x) does eventually win over x²... at x=ⅇ², where up(x,x) is ...
    [wxMaxima: comment end   ] */
 
 
@@ -814,7 +835,7 @@ up2(a,up(b,c));
 
 
 /* [wxMaxima: comment start ]
-Bingo! And obviously also commutative, unlike say, tetration (^y(x) or ^x(y)), which is neither.
+Bingo! And obviously also commutative, unlike say, tetration (^y x or ^x y), which is neither.
    [wxMaxima: comment end   ] */
 
 
@@ -829,7 +850,7 @@ up2(ⅇ^ⅇ,a);
 
 
 /* [wxMaxima: comment start ]
-... or base to the power of base. So one can imagine that for up3 it would be ⅇ^(ⅇ^ⅇ)... etc.
+... or base to the power of the base. So one can imagine that for up3 it would be ⅇ^(ⅇ^ⅇ)... etc.
    [wxMaxima: comment end   ] */
 
 
@@ -882,8 +903,18 @@ wxplot2d (log(up2(x,x)/up(x,x)), [x, 1.5, 5000])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+factor(diff(exp(log(x)^log(log(x))-log(x)^2),x,1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+find_root(''(%), x, 100, 300);
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
-So up2(x,x) does eventually win over up(x,x)... at x=ⅇ^(ⅇ²), where...
+Note also that up2(x,x) does eventually win over up(x,x)... at x=ⅇ^(ⅇ²), where up2(x,x) is...
    [wxMaxima: comment end   ] */
 
 
@@ -921,7 +952,15 @@ wxplot2d (up2_div(up2(x,x),up(x,x)), [x, 1.5, 5000])$
 
 /* [wxMaxima: input   start ] */
 up_div(up2(x,x),up(x,x));
+exp(log(x)^(log(log(x))-2));
 wxplot2d (up_div(up2(x,x),up(x,x)), [x, 3, 5000])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d( grid = true, nticks = 1000,
+    parametric( up(t,t) , up2(t,t) ,
+    t,1.5,5000 ) )$
 /* [wxMaxima: input   end   ] */
 
 
