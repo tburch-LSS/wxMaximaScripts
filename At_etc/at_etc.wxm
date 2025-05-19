@@ -619,6 +619,13 @@ wxplot2d (exp(log(up(x,x))/log(x*x)), [x, 1, 100])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: input   start ] */
+wxdraw2d( grid = true, nticks = 1000,
+    parametric( t^2 , up(t,t) ,
+    t,1,100 ) )$
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: comment start ]
 And x.y with x+y :
    [wxMaxima: comment end   ] */
@@ -862,7 +869,13 @@ diff(up2(a,b),a);
 /* [wxMaxima: input   start ] */
 up2(x,x);
 exp(log(x)^log(x));
+x^(log(x)^(log(x)-1));
 /* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+which is up(x,x)^[log(x)^(log(x)-2)].
+   [wxMaxima: comment end   ] */
 
 
 /* [wxMaxima: comment start ]
