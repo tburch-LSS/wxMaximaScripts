@@ -431,6 +431,17 @@ wxplot2d (down(x,x)/down2(x,x), [x, -1, 100])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Using down2_div (or down_min) for the "ratio"...
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+down_min(down(x,x),down2(x,x));
+wxplot2d (down_min(down(x,x),down2(x,x)), [x, -1, 5])$
+/* [wxMaxima: input   end   ] */
+
+
 /* [wxMaxima: section start ]
 Up
    [wxMaxima: section end   ] */
