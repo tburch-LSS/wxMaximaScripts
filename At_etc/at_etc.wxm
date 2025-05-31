@@ -647,6 +647,31 @@ wxplot3d (x*y/(x+y), [x, 0.2, 10], [y, 0.2, 10])$
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+Possible relations to polylogarithms?:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+integrate(log(t)/(t-1), t, 1, x);
+integrate(log(t)/(t+1), t, 1, x);
+integrate(log(t)/t, t, 1, x);
+integrate(log(y)/t, t, 1, x);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>x</mi><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+negative;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>x</mi><mi>-</mi><mn>1</mn><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+positive;
+/* [wxMaxima: answer  end   ] */
+
+
 /* [wxMaxima: subsect start ]
 Up differentiation
    [wxMaxima: subsect end   ] */
