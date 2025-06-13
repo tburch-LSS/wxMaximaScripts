@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, on and off from 08.2024 to 05.2025)
+(Tommy Burch, on and off from 08.2024 to 06.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -105,8 +105,16 @@ logcontract(%);
 
 
 /* [wxMaxima: comment start ]
-yep! The ambiguity probably speak volumes (see, e.g., M. Burgin, arXiv:1010.3287 : there, the focus appears not to be in maintaining distributivity, unlike here, where it's the main focus). It may be worth exploring whether functions other than powers/logarithms can retain distributivity... at first glance, seemingly not.
+yep!
+   [wxMaxima: comment end   ] */
 
+
+/* [wxMaxima: comment start ]
+The ambiguity probably speak volumes (see, e.g., M. Burgin, arXiv:1010.3287 and M. Czachor, arXiv:1412.8583 : there, the focus appears not to be in maintaining distributivity, unlike here, where it's the main focus; also, a specific choice for the "projective" function is usually made -- like our choice of exp here -- rather than exploring any implications of not having to choose; we should keep the same in mind by noting that the base can be changed). It may be worth exploring whether functions other than powers/logarithms can retain distributivity... at first glance, seemingly not.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
 Some values with base ⅇ:
    [wxMaxima: comment end   ] */
 
