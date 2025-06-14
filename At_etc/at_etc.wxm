@@ -515,7 +515,7 @@ is( up(a,b) = up(b,a) );
 /* [wxMaxima: comment start ]
 ... although it seems Maxima has trouble (it enforces some type of alphabetization?) with that realization in the present form...?
 
-So one advantage of up(a,b), over "naive" exponentiation (a^b or b^a), can be seen immediately: namely commutativity... up(a,b)=up(b,a).
+So one advantage of up(a,b), over "naive" exponentiation (a^ b or b^ a), can be seen immediately: namely commutativity... up(a,b)=up(b,a).
    [wxMaxima: comment end   ] */
 
 
@@ -758,6 +758,17 @@ no;
 
 
 /* [wxMaxima: input   start ] */
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+yes;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
 f(a) := b^(a^y + c);
 Uf(a,h);
 Uf_Ua(a);
@@ -777,6 +788,23 @@ positive;
 
 
 /* [wxMaxima: input   start ] */
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+no;
+/* [wxMaxima: answer  end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>y</mi><mi>-</mi><mn>1</mn><st> positive, negative or zero?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+negative;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
 f(a) := exp(b^(a^y + c));
 Uf(a,h);
 Uf_Ua(a);
@@ -786,6 +814,17 @@ Uf_Ua(a);
 /* [wxMaxima: question  end   ] */
 /* [wxMaxima: answer  start ] */
 no;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>c</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+yes;
 /* [wxMaxima: answer  end   ] */
 
 
@@ -823,6 +862,17 @@ no;
 /* [wxMaxima: question  end   ] */
 /* [wxMaxima: answer  start ] */
 no;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Uf_Ua(a);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+<math><st>Is </st><mi>c</mi><st> an </st><mi>integer</mi><st>?</st></math>
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+yes;
 /* [wxMaxima: answer  end   ] */
 
 
@@ -886,7 +936,7 @@ up2(a,up(b,c));
 
 
 /* [wxMaxima: comment start ]
-Bingo! And obviously also commutative, unlike say, tetration (^y x or ^x y), which is neither.
+Bingo! And obviously also commutative, unlike say, tetration (^ y x or ^ x y), which is neither.
    [wxMaxima: comment end   ] */
 
 
