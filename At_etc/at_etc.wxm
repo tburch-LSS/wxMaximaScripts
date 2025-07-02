@@ -697,7 +697,7 @@ up(a,h);
 
 
 /* [wxMaxima: comment start ]
-we'll use 'a' as the independent variable here.
+we'll use 'a' as the independent variable here...
 
 Working with up_/, up_+ as times, up_- as divide, and the new "up_+"-identity, h-->1...
    [wxMaxima: comment end   ] */
@@ -1017,6 +1017,7 @@ factor(diff(exp(log(x)^log(log(x))-log(x)^2),x,1));
 
 /* [wxMaxima: input   start ] */
 find_root(''(%), x, 100, 300);
+up2(%,%);
 /* [wxMaxima: input   end   ] */
 
 
