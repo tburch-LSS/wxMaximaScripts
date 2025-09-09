@@ -681,6 +681,31 @@ positive;
 
 
 /* [wxMaxima: subsect start ]
+Up with generalized base
+   [wxMaxima: subsect end   ] */
+
+
+/* [wxMaxima: comment start ]
+u_b(x,y) = b^(log_b(x)*log_b(y)) ... 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bup(b,x,y) := radcan( exp(log(x)*log(y)/log(b)) );
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bup(b,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+diff(bup(b,x,y),b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: subsect start ]
 Up differentiation
    [wxMaxima: subsect end   ] */
 
