@@ -6,7 +6,7 @@ Distributivity, Extended
 
 
 /* [wxMaxima: comment start ]
-(Tommy Burch, on and off from 08.2024 to 06.2025)
+(Tommy Burch, on and off from 08.2024 to 09.2025)
    [wxMaxima: comment end   ] */
 
 
@@ -691,7 +691,12 @@ u_b(x,y) = b^(log_b(x)*log_b(y)) ...
 
 
 /* [wxMaxima: input   start ] */
-bup(b,x,y) := radcan( exp(log(x)*log(y)/log(b)) );
+logb(b,x) := log(x)/log(b);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bup(b,x,y) := radcan( b^(logb(b,x)*logb(b,y)) );
 /* [wxMaxima: input   end   ] */
 
 
@@ -701,7 +706,20 @@ bup(b,x,y);
 
 
 /* [wxMaxima: input   start ] */
-diff(bup(b,x,y),b);
+dbup(b,x,y) := diff(bup(b,x,y),b);
+dbup(b,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dbupdx(b,x,y) := diff(bup(b,x,y),x);
+dbupdx(b,x,y);
+dbup(b,x,y) / dbupdx(b,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([bup(b,2,2),bup(b,3,3),bup(b,4,4),dbup(b,2,2),dbup(b,3,3)], [b, 1.8, 5])$
 /* [wxMaxima: input   end   ] */
 
 
