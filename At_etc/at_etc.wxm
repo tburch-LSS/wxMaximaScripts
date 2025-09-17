@@ -702,6 +702,7 @@ bup(b,x,y) := radcan( b^(logb(b,x)*logb(b,y)) );
 
 /* [wxMaxima: input   start ] */
 bup(b,x,y);
+exp(log(x)*log(y)/log(b));
 /* [wxMaxima: input   end   ] */
 
 
@@ -715,6 +716,18 @@ dbup(b,x,y);
 dbupdx(b,x,y) := diff(bup(b,x,y),x);
 dbupdx(b,x,y);
 dbup(b,x,y) / dbupdx(b,x,y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+dbup(b,x,x);
+dbupdx(b,x,x);
+dbup(b,x,x) / dbupdx(b,x,x);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bup(exp(β)*b,exp(α)*x,exp(α)*y);
 /* [wxMaxima: input   end   ] */
 
 
