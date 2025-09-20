@@ -727,7 +727,7 @@ dbup(b,x,x) / dbupdx(b,x,x);
 
 
 /* [wxMaxima: input   start ] */
-bup(exp(β)*b,exp(α)*x,exp(α)*y);
+bup(exp(ζ)*z,exp(ξ)*x,exp(ξ)*y);
 /* [wxMaxima: input   end   ] */
 
 
