@@ -731,8 +731,23 @@ bup(exp(ζ)*z,exp(ξ)*x,exp(ξ)*y);
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+For b > 1 :
+   [wxMaxima: comment end   ] */
+
+
 /* [wxMaxima: input   start ] */
 wxplot2d ([bup(b,2,2),bup(b,3,3),bup(b,4,4),dbup(b,2,2),dbup(b,3,3)], [b, 1.8, 5])$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Considering bases  0 < b < 1 :
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot2d ([bup(b,%e,%e),bup(b,2,2),bup(b,3,3),dbup(b,%e,%e),dbup(b,2,2),dbup(b,3,3)], [b, 0.01, 0.99])$
 /* [wxMaxima: input   end   ] */
 
 
